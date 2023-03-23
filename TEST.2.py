@@ -36,13 +36,13 @@ def newGame():
     game_over = False
 
 
-newGameButton = Button(text="NEW GAME", command=newGame)
+newGame_button = Button(text="NEW GAME", command=newGame)
 status_label = Label(text="X's Turn")
-score_label = Label(text="X:[] O:[]".format(X_wins, O_wins))
+score_label = Label(text="X:{} O:{}".format(X_wins, O_wins))
 
-newGameButton.grid(row=0, column=0)
-newGameButton.grid(row=0, column=1)
-newGameButton.grid(row=0, column=2)
+newGame_button.grid(row=0, column=0)
+status_label.grid(row=0, column=1)
+score_label.grid(row=0, column=2)
 
 
 def checkGame_status(X_turn):
@@ -76,7 +76,7 @@ def checkGame_status(X_turn):
 
 def on_click(button):
     global X_turn, game_over, X_wins, O_wins
-    if(button["text"] !="" or game_over):
+    if(button["text"] != "" or game_over):
         return
     button["text"] = "X" if X_turn else "O"
     b=checkGame_status(X_turn)
@@ -90,7 +90,7 @@ def on_click(button):
         else:
             status_label["text"] = "O wins"
             O_wins += 1
-            score_label["text"] = "X:[] O:[]".format(X_wins, O_wins)
+            score_label["text"] = "X:{} O:{}".format(X_wins, O_wins)
             game_over = True
             return
         X_turn = not X_turn
